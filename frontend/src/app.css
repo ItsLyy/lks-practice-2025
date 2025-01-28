@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap");
+@import "tailwindcss";
+
+:root {
+  --bg-color: #f5f5f5;
+  --text-color: #424242;
+  --first-accent-color: #48cfcb;
+  --second-accent-color: #229799;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Figtree", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 4rem;
+  background-color: #ffffffff;
+  box-shadow: 0 0 10px 1px #00000020;
+}
+
+header .header__brand {
+  font-size: 1.5em;
+}
+
+header .logout-btn {
+  background-color: transparent;
+  color: red;
+  font-family: inherit;
+  border: none;
+  font-size: 1em;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.5rem;
+}
+
+.input__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.input__field .input__text {
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  color: inherit;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--text-color);
+  opacity: 40%;
+
+  transition: 300ms ease-in-out;
+}
+
+.input__field .input__text.input__area {
+  resize: none;
+}
+
+.input__field span {
+  color: #ff1f1f;
+}
+
+.input__field .input__text:focus,
+.input__field .input__text.active {
+  opacity: 100%;
+}
+
+.input__submit {
+  font-family: inherit;
+  background-color: var(--first-accent-color);
+  cursor: pointer;
+
+  border: none;
+  border-radius: 4px;
+  padding: 0.8rem 1rem;
+  font-size: 1em;
+  margin: 1rem 0 0;
+
+  transition: 300ms ease-in-out;
+}
+
+.input__error-label {
+  color: #ff1f1f;
+  font-size: 0.85em;
+}
+
+.input__row {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+}
+
+.input__field:has(.form-input) {
+  width: 100%;
+}

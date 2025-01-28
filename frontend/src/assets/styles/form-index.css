@@ -1,0 +1,36 @@
+#form-index .container {
+  padding: 1rem 0.5rem;
+}
+
+#form-index header {
+  border-radius: 8px;
+  margin-bottom: 1em;
+}
+
+.form__wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.card {
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0 0 10px 1px #00000020;
+  min-height: 10rem;
+  padding: 1rem;
+  border-radius: 8px;
+  border-bottom: 4px solid var(--second-accent-color);
+}
+
+.card .card__title {
+  margin-bottom: 0.5rem;
+}
+
+.card .card__link-detail {
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 1rem;
+  padding: 0.5rem;
+}
