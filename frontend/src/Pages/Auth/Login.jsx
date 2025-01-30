@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import InputText from "../../Components/InputText";
 import ErrorLabel from "../../Components/ErrorLabel";
-import api from "../../api/instance.jsx";
 import { AppContext } from "../../Context/AppContext.jsx";
 import GuestLayout from "../../Layout/GuestLayout.jsx";
+import axiosClient from "../../api/axios-client.jsx";
 
 const Login = () => {
   const [data, setData] = useState({
@@ -21,7 +21,7 @@ const Login = () => {
     setError({});
     setErrorMessage("");
 
-    api
+    axiosClient
       .post("/auth/login", data)
       .then((res) => {
         setToken(res.data.user.accessToken);
@@ -37,10 +37,15 @@ const Login = () => {
 
   return (
     <GuestLayout>
-      <section id="login">
-        <div className="wrapper">
-          <h1>Login</h1>
-          <form className="form__login" onSubmit={onSubmitHandler}>
+      <section className="flex h-svh w-full items-center justify-center">
+        <div className="w-full max-w-96 rounded-lg bg-white shadow-[0_0_10px_1px] shadow-[#0000020]">
+          <h1 className="border-b-[1px] border-[#00000010] px-8 py-4 text-3xl font-semibold">
+            Login
+          </h1>
+          <form
+            className="flex flex-col gap-4 px-8 py-4"
+            onSubmit={onSubmitHandler}
+          >
             <div>
               <InputText
                 label="Email"
@@ -77,8 +82,12 @@ const Login = () => {
               />
               <ErrorLabel value={error.password && error.password[0]} />
             </div>
-            <div>
-              <input type="submit" className="input__submit" value="Login" />
+            <div className="my-5">
+              <input
+                type="submit"
+                className="w-full cursor-pointer rounded-md bg-gradient-to-b from-sky-500 to-sky-600 px-4 py-2 text-white active:brightness-50"
+                value="Login"
+              />
               <ErrorLabel value={errorMessage} />
             </div>
           </form>

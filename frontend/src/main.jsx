@@ -1,14 +1,14 @@
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
 
-import "./assets/styles/app.css";
-
 import App from "./App.jsx";
 import Login from "./Pages/Auth/Login.jsx";
 import { AppContextProvider } from "./Context/AppContext.jsx";
 import FormIndex from "./Pages/Form/Index.jsx";
 import FormCreate from "./Pages/Form/Create.jsx";
 import FormShow from "./Pages/Form/Show.jsx";
+
+import "./app.css";
 
 const router = createBrowserRouter([
   {
@@ -38,5 +38,5 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <AppContextProvider>
     <RouterProvider router={router} />
-  </AppContextProvider>
+  </AppContextProvider>,
 );

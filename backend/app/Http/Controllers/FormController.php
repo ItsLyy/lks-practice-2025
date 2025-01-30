@@ -52,13 +52,14 @@ class FormController extends Controller
         $user = auth()->user();
         $userEmail = explode("@", $user->email);
 
-        foreach ($form->allowedDomains as $allowedDomain) {
-            if ($allowedDomain->domain != $userEmail[1]) {
+        if (!$form->allowedDomains->isEmpty()) {
+            if (!$form->allowedDomains->where("domain", $userEmail[1])->first()) {
                 return response([
                     "message" => "Forbidden access"
                 ], 403);
-            }
+            };
         }
+
         return response([
             "message" => "Get form success",
             "form" => [

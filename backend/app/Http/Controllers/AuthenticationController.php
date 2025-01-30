@@ -18,7 +18,7 @@ class AuthenticationController extends Controller
             ], 401);
         }
 
-        $token = $user->createToken($user->name, ["*"], now()->addDay());
+        $token = $user->createToken($user->name);
 
         return response([
             "message" => "Login success",
