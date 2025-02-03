@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ResponseAllResource extends JsonResource
+class AdminResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,15 +14,11 @@ class ResponseAllResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $response = [
-            "date" => $this->date,
-            "user" => $this->user,
+        return [
+            "username" => $this->username,
+            "last_login_at" => $this->last_login_at,
+            "created_at" => $this->created_at,
+            "updated_at" => $this->updated_at,
         ];
-
-        foreach ($this->answers as $answer) {
-            $response["answers"][$answer->name] = $answer->pivot->value;
-        }
-
-        return $response;
     }
 }

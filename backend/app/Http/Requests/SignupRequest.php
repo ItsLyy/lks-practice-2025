@@ -2,17 +2,16 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\ValidateAnswerValue;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SubmitResponseRequest extends FormRequest
+class SignupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return !empty(auth()->user());
+        return true;
     }
 
     /**
@@ -22,14 +21,9 @@ class SubmitResponseRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rule =  [
-            "answers" => ["array"],
+        return [
+            "username" => ["required", "unique:users,username", "unique:administrators,username", "min:4", "max:60"],
+            "password" => ["required", "min:5", "max:10"],
         ];
-
-        foreach ($this->answers as $index => $answer) {
-            $rule["answers.$index.value"] = [new ValidateAnswerValue($answer['question_id'])];
-        }
-
-        return $rule;
     }
 }

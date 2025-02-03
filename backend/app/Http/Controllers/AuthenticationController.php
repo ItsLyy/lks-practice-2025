@@ -2,39 +2,66 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\SigninRequest;
+use App\Http\Requests\SignupRequest;
+use App\Models\Administrator;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 
 class AuthenticationController extends Controller
 {
-    public function login(LoginRequest $request)
+    public function signin(SigninRequest $request): Response
     {
-        $user = User::where("email", $request->email)->first();
+        $isUser = User::where("username", $request->username)->first();
+        $isAdmin = Administrator::where("username", $request->username)->first();
+        $user = null;
+
+        if ($isUser) {
+            $user = $isUser;
+        } else if ($isAdmin) {
+            $user = $isAdmin;
+        }
+
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response([
-                "message" => "Email or password incorrect",
+                "status" => "invalid",
+                "message" => "Wrong username or password",
             ], 401);
         }
 
-        $token = $user->createToken($user->name);
+        $token = $user->createToken($user->username);
 
         return response([
-            "message" => "Login success",
-            "user" => [
-                "name" => $user->name,
-                "email" => $user->email,
-                "accessToken" => $token->plainTextToken,
-            ]
-        ], 200);
+            "status" => "success",
+            "token" => $token->plainTextToken,
+        ]);
     }
 
-    public function logout(Request $request)
+    public function signup(SignupRequest $request): Response
     {
-        $request->user()->currentAccessToken()->delete();
+        $user = User::create([
+            "username" => $request->username,
+            "password" => $request->password,
+        ]);
+
+        $token = $user->createToken($user->username);
+
         return response([
-            "message" => "Logout Success"
+            "status" => "success",
+            "token" => $token->plainTextToken,
+        ], 201);
+    }
+
+
+    public function signout(): Response
+    {
+        $user = auth()->user();
+        $user->currentAccessToken()->delete();
+
+        return response([
+            "status" => "success",
         ]);
     }
 }
