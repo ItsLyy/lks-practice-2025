@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post("v1/auth/signout", [AuthenticationController::class, "signout"]);
-    Route::get("v1/admins", [AdministratorController::class, "index"]);
+});
 
+Route::middleware(['auth:sanctum', 'adminPermission'])->group(function () {
+    Route::get("v1/admins", [AdministratorController::class, "index"]);
     Route::get("v1/users", [UserController::class, "index"]);
     Route::post("v1/users", [UserController::class, "store"]);
     Route::put("v1/users/{user:id}", [UserController::class, "update"]);

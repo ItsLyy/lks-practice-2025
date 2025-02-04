@@ -13,15 +13,9 @@ class UserController extends Controller
 {
     public function index(): Response
     {
-        $users = User::get();
+        $users = User::first()->isAdmin();
 
-        $user = auth()->user();
-        if (!Administrator::where("username", $user->username)) {
-            return response([
-                "status" => "forbidden",
-                "message" => "You are not the administrator",
-            ], 403);
-        }
+        return response($users);
 
         return response([
             "totalElements" => count($users),
@@ -31,15 +25,6 @@ class UserController extends Controller
 
     public function store(SignupRequest $request): Response
     {
-        $user = auth()->user();
-
-        if (!Administrator::where("username", $user->username)->first()) {
-            return response([
-                "status" => "forbidden",
-                "message" => "You are not the administrator",
-            ], 403);
-        };
-
         $admin = Administrator::create([
             "username" => $request->username,
             "password" => $request->password,
@@ -82,14 +67,6 @@ class UserController extends Controller
             ], 400);
         }
 
-        $user = auth()->user();
-        if (!Administrator::where("username", $user->username)) {
-            return response([
-                "status" => "forbidden",
-                "message" => "You are not the administrator",
-            ], 403);
-        }
-
         if ($request->username) {
             $userUpdated->username = $request->username;
         }
@@ -120,14 +97,6 @@ class UserController extends Controller
             return response([
                 "status" => "not-found",
                 "message" => "Where the hell is he?"
-            ], 403);
-        }
-
-        $user = auth()->user();
-        if (!Administrator::where("username", $user->username)) {
-            return response([
-                "status" => "forbidden",
-                "message" => "You are not the administrator",
             ], 403);
         }
 

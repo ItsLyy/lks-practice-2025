@@ -42,4 +42,9 @@ class Administrator extends Model
             'password' => 'hashed',
         ];
     }
+
+    public function isAdmin(): bool
+    {
+        return true;
+    }
 }
