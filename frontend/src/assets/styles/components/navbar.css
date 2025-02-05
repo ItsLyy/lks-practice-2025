@@ -1,0 +1,44 @@
+header {
+  background-color: #fff;
+  box-shadow: 0 0 10px 1px #00000020;
+  padding: 1rem;
+  z-index: 20;
+}
+
+header nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header nav .logout__btn {
+  cursor: pointer;
+  color: rgb(202, 0, 0);
+  background-color: transparent;
+  padding: 0.75rem 1rem;
+  border: none;
+  font-size: 1em;
+}
+
+header nav .nav__menu {
+  list-style: none;
+  display: flex;
+  gap: 0.5rem;
+}
+
+header nav .nav__menu .nav__item .nav__link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  padding: 0.7rem 1rem;
+
+  transition: color 300ms ease-in-out;
+}
+
+header nav .nav__menu .nav__item .nav__link:hover {
+  color: var(--first-accent);
+}
+
+header nav .nav__menu .nav__item .nav__link.active {
+  color: var(--first-accent);
+}

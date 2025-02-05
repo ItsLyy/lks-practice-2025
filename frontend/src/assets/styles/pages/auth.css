@@ -1,0 +1,30 @@
+#auth {
+  height: 100svh;
+}
+
+#auth .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.form__auth {
+  max-width: 400px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px 1px #00000010;
+}
+
+.form__auth .input__row:last-child {
+  margin-top: 2rem;
+  width: 100%;
+  justify-content: flex-end;
+}

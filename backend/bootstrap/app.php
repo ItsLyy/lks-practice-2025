@@ -18,7 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->alias([
             'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
-            'adminPermission' => \App\Http\Middleware\AdminPermission::class,
+            'journalPermission' => \App\Http\Middleware\JournalPermission::class,
         ]);
 
         //

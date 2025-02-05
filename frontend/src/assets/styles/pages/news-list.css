@@ -1,0 +1,30 @@
+#news-list table {
+  width: 100%;
+  background-color: #fff;
+  border-collapse: collapse;
+  border-bottom: 0.5rem solid var(--second-accent);
+  border-radius: 8px 8px;
+}
+
+#news-list table tr td,
+#news-list table tr th {
+  padding: 1rem;
+}
+
+#news-list table tr th {
+  text-align: start;
+  font-weight: 600;
+}
+
+#news-list table tr td {
+  color: #212121;
+}
+
+#news-list table tr {
+  border-bottom: 1px solid #00000010;
+}
+
+#news-list table tr td a {
+  text-decoration: none;
+  color: var(--first-accent);
+}

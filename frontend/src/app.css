@@ -1,1 +1,48 @@
-@import "tailwindcss";
+/* Pages */
+@import url("./assets/styles/pages/auth.css");
+@import url("./assets/styles/pages/news-list.css");
+
+/* Components */
+@import url("./assets/styles/components/input.css");
+@import url("./assets/styles/components/navbar.css");
+
+@font-face {
+  font-family: Geist;
+  src: url(./assets/geist.ttf);
+}
+
+:root {
+  --first-accent: #493d9e;
+  --second-accent: #574e9b;
+}
+
+* {
+  font-family: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Geist", sans-serif;
+  background-color: #f1f1f1;
+}
+
+section {
+  width: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  background-color: #fff;
+  padding: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px 1px #00000010;
+}

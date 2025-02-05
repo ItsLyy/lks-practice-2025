@@ -2,12 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Administrator;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminPermission
+class JournalPermission
 {
     /**
      * Handle an incoming request.
@@ -18,12 +17,12 @@ class AdminPermission
     {
         $user = auth()->user();
 
-        if (!$user->isAdmin()) {
+        if ($user->role != "jurnalis") {
             return response([
-                "status" => "forbidden",
-                "message" => "You are not the administrator",
+                "status" => "error",
+                "message" => "Unauthorized access",
             ], 403);
-        };
+        }
 
         return $next($request);
     }

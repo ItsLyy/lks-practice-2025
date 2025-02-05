@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SignupRequest extends FormRequest
+class CreateNewsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->user()->role == "jurnalis";
     }
 
     /**
@@ -22,8 +22,8 @@ class SignupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "username" => ["required", "unique:users,username", "unique:administrators,username", "min:4", "max:60"],
-            "password" => ["required", "min:5", "max:10"],
+            "title" => ["required"],
+            "content" => ["required"],
         ];
     }
 }

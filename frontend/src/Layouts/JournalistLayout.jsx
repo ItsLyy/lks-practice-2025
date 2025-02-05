@@ -1,14 +1,14 @@
-import { Link, Navigate, NavLink, Outlet, useNavigate } from "react-router";
-import axiosClient from "../axios/axios-client";
 import { useContext } from "react";
+import { Link, Navigate, NavLink, Outlet, useNavigate } from "react-router";
 import { AppContext } from "../Contexts/AppContext";
+import axiosClient from "../axios/axios-client";
 
-export default function DefaultLayout() {
+export default function JournalistLayout() {
   const { token, setToken, user } = useContext(AppContext);
   const navigate = useNavigate();
 
-  if (user.role === "jurnalis") {
-    return <Navigate to="/journalist" />;
+  if (user.role === "pembaca") {
+    return <Navigate to="/" />;
   }
 
   const onLogoutHandler = () => {
@@ -31,7 +31,7 @@ export default function DefaultLayout() {
                   className={({ isActive }) =>
                     `nav__link active${isActive && " ` nav__link"}`
                   }
-                  to="/"
+                  to="/journalist"
                 >
                   Home
                 </NavLink>
@@ -41,7 +41,7 @@ export default function DefaultLayout() {
                   className={({ isActive }) =>
                     `nav__link active${isActive && " ` nav__link"}`
                   }
-                  to="/news"
+                  to="/journalist/news"
                 >
                   News
                 </NavLink>
